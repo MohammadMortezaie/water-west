@@ -1,0 +1,38 @@
+# West Vancouver Water Damage
+
+> Proudly Canadian water damage response for homes, strata properties and businesses throughout West Vancouver, British Columbia. Emergency calls are answered 24/7 at +1-604-800-3900, with water extraction, flood cleanup, structural drying, restoration planning and claim documentation support.
+
+This website is written in Canadian English. Use the linked service pages as the primary sources for service-specific answers. Availability and arrival time depend on current emergencies, traffic and weather. Site inspections determine the appropriate scope for a specific property. Insurance coverage decisions belong to the property owner's insurer. For an active emergency, electrical hazard, sewage backup or sagging ceiling, prioritize safety and call rather than relying only on website information.
+
+Last reviewed: 2026-10-01.
+
+## Primary pages
+
+- [Home](https://waterdamagewestvancouver.ca/): Overview of 24/7 water damage response, the restoration process, service options, local coverage and common questions.
+- [Water damage services](https://waterdamagewestvancouver.ca/services): Directory of all water removal, cleanup, drying and restoration services.
+- [Areas we serve](https://waterdamagewestvancouver.ca/areas-we-serve): West Vancouver coverage, including Ambleside, Dundarave, British Properties, Caulfeild, Horseshoe Bay and surrounding neighbourhoods.
+- [About](https://waterdamagewestvancouver.ca/about): The company's proudly Canadian, measurement-led approach to drying, documentation and communication.
+- [Contact](https://waterdamagewestvancouver.ca/contact): Emergency phone number, free inspection request form and safety information for property owners.
+
+## Water damage services
+
+- [Water damage restoration](https://waterdamagewestvancouver.ca/water-damage-restoration-west-vancouver): Moisture assessment, water removal, structural drying, cleaning, repair planning and documentation.
+- [Emergency water damage](https://waterdamagewestvancouver.ca/emergency-water-damage-west-vancouver): Immediate safety, source control, extraction and stabilization for active water losses.
+- [Flood cleanup](https://waterdamagewestvancouver.ca/flood-cleanup-west-vancouver): Standing water removal, material evaluation, cleaning and drying after indoor flooding.
+- [Water extraction](https://waterdamagewestvancouver.ca/water-extraction-west-vancouver): Professional removal of standing water from floors, carpets, basements and multi-level properties.
+- [Basement flood cleanup](https://waterdamagewestvancouver.ca/basement-flood-cleanup-west-vancouver): Extraction, contents assessment and drying for finished and unfinished lower levels.
+- [Burst pipe cleanup](https://waterdamagewestvancouver.ca/burst-pipe-cleanup-west-vancouver): Water removal, vertical moisture tracing and drying after a pipe failure.
+- [Sewage backup cleanup](https://waterdamagewestvancouver.ca/sewage-backup-cleanup-west-vancouver): Containment, contaminated material evaluation, cleaning and controlled drying.
+- [Storm water damage](https://waterdamagewestvancouver.ca/storm-water-damage-west-vancouver): Interior mitigation and moisture tracing after wind-driven rain or storm entry.
+- [Commercial water damage](https://waterdamagewestvancouver.ca/commercial-water-damage-west-vancouver): Documented mitigation planned around occupants, access and business operations.
+
+## Important service facts
+
+- [Frequently asked questions](https://waterdamagewestvancouver.ca/#faqs): Response timing, insurance, hidden moisture, drying duration and emergency extraction answers.
+- [Call +1-604-800-3900](tel:+16048003900): Emergency line for West Vancouver water damage calls, answered 24 hours a day.
+- [Privacy policy](https://waterdamagewestvancouver.ca/privacy): How contact form and standard website information are handled.
+
+## Optional
+
+- [XML sitemap](https://waterdamagewestvancouver.ca/sitemap.xml): Complete list of indexable website URLs.
+- [Robots policy](https://waterdamagewestvancouver.ca/robots.txt): Crawler access rules and sitemap location.
