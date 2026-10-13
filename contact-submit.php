@@ -39,11 +39,12 @@ $body = implode("\n", [
 ]);
 
 $headers = [
-    'From: Website Request <no-reply@waterdamagewestvancouver.ca>',
+    'From: Website Request <do-not-reply@waterdamagewestvancouver.ca>',
+    'Cc: info@webpulse.ca',
     'Content-Type: text/plain; charset=UTF-8',
 ];
 $headers[] = 'Reply-To: ' . $email;
 
-$sent = @mail('info@waterdamagewestvancouver.ca', $subject, $body, implode("\r\n", $headers));
+$sent = @mail('info@vrrestoration.ca, admin@vrrestoration.ca', $subject, $body, implode("\r\n", $headers));
 header('Location: /contact?' . ($sent ? 'sent=1' : 'error=1'), true, 303);
 exit;
