@@ -108,6 +108,7 @@ function render_header(array $meta, string $currentPath, array $extraSchema = []
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="5FzvBHn_Y46M4Alui-qsO8uUwrYG8mQswJuD1Mckf40" />
     <title><?= e($metaTitle) ?></title>
     <meta name="description" content="<?= e($meta['description']) ?>">
     <meta name="robots" content="<?= e($robots) ?>">
