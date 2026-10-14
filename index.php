@@ -32,7 +32,7 @@ function render_home(): void
 {
     global $services, $homeFaqs, $neighbourhoods;
     $meta = [
-        'title' => 'Water Damage Restoration West Vancouver | 24/7',
+        'title' => 'Water Damage Restoration West Vancouver',
         'description' => '24/7 water damage restoration in West Vancouver. Fast water extraction, structural drying, free inspection and insurance claim support.',
     ];
     render_header($meta, '', [faq_schema($homeFaqs)]);
@@ -201,7 +201,7 @@ function render_services(): void
         ['Can you provide information for an insurance claim?', 'Yes. Photographs, moisture readings and mitigation records can support communication with an adjuster. The insurer determines whether a loss is covered under the policy.'],
     ];
     $meta = [
-        'title' => 'Water Damage Services in West Vancouver | 24/7',
+        'title' => 'Water Damage Services West Vancouver',
         'description' => 'Explore water damage services in West Vancouver, including flood cleanup, water extraction, burst pipe cleanup, drying and emergency response.',
         'image' => 'assets/images/restoration-drying-equipment.webp',
         'schema_type' => 'CollectionPage',
@@ -515,7 +515,7 @@ function render_areas(): void
         ['How quickly can you reach my West Vancouver address?', 'Response time varies with traffic, weather and active emergencies. Call with your address and loss details for the most accurate current arrival window.'],
     ];
     $meta = [
-        'title' => 'Water Damage Service Areas | West Vancouver',
+        'title' => 'Water Damage Service Areas West Vancouver',
         'description' => '24/7 water damage response throughout West Vancouver, including Ambleside, Dundarave, British Properties, Caulfeild and Horseshoe Bay.',
         'image' => 'assets/images/emergency-water-damage-living-room.webp',
         'schema_type' => 'CollectionPage',
@@ -568,7 +568,7 @@ function render_about(): void
         ['Do you decide whether insurance will cover the work?', 'No. Coverage decisions belong to the insurer. We can provide photographs, moisture readings and mitigation records that support a clear claim conversation.'],
     ];
     $meta = [
-        'title' => 'About Our West Vancouver Water Damage Service',
+        'title' => 'About West Vancouver Water Damage',
         'description' => 'Learn about our practical approach guided by measurements for water damage cleanup, drying, communication and insurance documentation in West Vancouver.',
         'image' => 'assets/images/living-room-structural-drying.webp',
         'schema_type' => 'AboutPage',
@@ -622,7 +622,7 @@ function render_contact(): void
         ['What should I do before help arrives?', 'Keep away from electrical hazards, contaminated water and sagging ceilings. If it is safe, stop the water source and move only light, easy-to-handle belongings away from the wet area.'],
     ];
     $meta = [
-        'title' => 'Contact Water Damage Help | West Vancouver',
+        'title' => 'Contact West Vancouver Water Damage',
         'description' => 'Request 24/7 water damage help or a free inspection in West Vancouver. Call (604)800-3900 or send your contact details.',
         'image' => 'assets/images/ceiling-water-damage.webp',
         'schema_type' => 'ContactPage',
@@ -669,7 +669,7 @@ function render_privacy(): void
         ['Why is submitted information used?', 'Submitted information is used to respond to the water damage request, arrange an inspection and maintain related business records.'],
         ['Is submitted personal information sold?', 'No. The privacy policy states that submitted personal information is not sold.'],
     ];
-    $meta = ['title' => 'Privacy Policy | West Vancouver Water Damage', 'description' => 'Privacy information for visitors and service request forms on waterdamagewestvancouver.ca.', 'image' => 'assets/images/restoration-drying-equipment.webp'];
+    $meta = ['title' => 'Privacy Policy | West Vancouver', 'description' => 'Privacy information for visitors and service request forms on waterdamagewestvancouver.ca.', 'image' => 'assets/images/restoration-drying-equipment.webp'];
     $breadcrumbs = [['Home', ''], ['Privacy', 'privacy']];
     render_header($meta, 'privacy', [breadcrumb_schema($breadcrumbs), faq_schema($privacyFaqs)]);
     render_breadcrumbs($breadcrumbs);
@@ -682,7 +682,7 @@ function render_privacy(): void
 
 function render_not_found(): void
 {
-    $meta = ['title' => 'Page Not Found | West Vancouver Water Damage', 'description' => 'The page you requested could not be found.', 'robots' => 'noindex,follow'];
+    $meta = ['title' => 'Page Not Found | West Vancouver', 'description' => 'The page you requested could not be found.', 'robots' => 'noindex,follow'];
     render_header($meta, '404');
     ?>
     <section class="not-found"><div class="container"><?php render_canadian_badge('West Vancouver water damage help'); ?><span class="eyebrow">404 error</span><h1>This page has moved or does not exist.</h1><p>Return home or call if you need urgent water damage help in West Vancouver.</p><?php render_page_photo('emergency-water-damage-living-room.webp', 'Emergency water damage in a living room', 'Need help now? Our emergency line is available 24 hours.'); ?><div class="hero__actions"><a class="button button--dark" href="/">Return home</a><a class="button button--outline-dark" href="tel:<?= e(PHONE_LINK) ?>">Call <?= e(PHONE_DISPLAY) ?></a></div></div></section>
