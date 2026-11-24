@@ -1,24 +1,32 @@
 <?php
 declare(strict_types=1);
 
-const SITE_NAME = 'West Vancouver Water Damage';
+const SITE_NAME = 'VR Plus Restoration';
 const SITE_URL = 'https://waterdamagewestvancouver.ca';
-const PHONE_DISPLAY = '(604)800-3900';
+const MAIN_SITE_URL = 'https://vrrestoration.ca/en';
+const BUSINESS_EMAIL = 'info@vrrestoration.ca';
+const BUSINESS_STREET = '636 Clyde Ave';
+const BUSINESS_LOCALITY = 'West Vancouver';
+const BUSINESS_REGION = 'BC';
+const PHONE_DISPLAY = '(604) 800-3900';
 const PHONE_LINK = '+16048003900';
+const TITLE_SUFFIX = ' | (604) 800-3900';
+const CONTENT_LAST_MODIFIED = '2026-11-24';
+const ASSET_VERSION = '20261124';
 
 $services = [
     'water-damage-restoration-west-vancouver' => [
-        'nav' => 'Water Damage Restoration',
-        'h1' => 'Complete Water Damage Repair in West Vancouver',
-        'eyebrow' => 'Assessment, drying and repair',
-        'title' => 'Water Damage Repair West Vancouver',
-        'description' => 'Professional water damage repair in West Vancouver. Get moisture detection, extraction, structural drying and documentation for your insurance claim. Call 24/7.',
-        'lead' => 'From a small ceiling stain to water across several rooms, we locate the source, map the moisture and build a practical drying plan for your property.',
-        'intro_title' => 'A complete plan from wet materials to a dry, usable space',
-        'intro' => 'Water can move behind baseboards, through wall cavities and under finished flooring long after the visible puddle is gone. Our restoration team checks the full affected area, removes standing water, dries materials under controlled conditions and identifies what can be saved. You receive clear updates and a documented scope instead of guesswork.',
+        'nav' => 'Water Damage Repair & Drying',
+        'h1' => 'Water Damage Repair & Structural Drying in West Vancouver',
+        'eyebrow' => 'Drying verification and repair planning',
+        'title' => 'Water Damage Repair & Drying West Vancouver',
+        'description' => 'Water damage repair and structural drying in West Vancouver, with moisture monitoring, material assessment, repair planning and claim documentation.',
+        'lead' => 'After the immediate water is controlled, we trace retained moisture, monitor the drying response and define the repairs needed to return the space to use.',
+        'intro_title' => 'A repair plan built on verified drying conditions',
+        'intro' => 'Water can remain behind baseboards, inside wall cavities and beneath finished flooring after standing water is gone. We assess the affected assembly, monitor drying under controlled conditions and identify which materials can be retained. Once drying targets are reached, the documented scope supports practical repair decisions instead of guesswork.',
         'situations' => ['Plumbing and supply line leaks', 'Overflowing fixtures and appliances', 'Roof and building envelope leaks', 'Wet drywall, insulation and flooring', 'Hidden moisture after a past leak', 'Water across several residential or commercial rooms'],
-        'why_title' => 'Restoration decisions based on moisture readings',
-        'why' => 'A successful water damage project is measured, not assumed. We compare affected and unaffected materials, monitor progress and adjust drying equipment when readings show it is needed. That approach helps limit unnecessary demolition while reducing the risk of trapped moisture.',
+        'why_title' => 'Repair decisions based on moisture readings',
+        'why' => 'A successful repair begins with measured conditions. We compare affected materials with appropriate dry references, monitor progress and adjust drying equipment when readings show it is needed. That approach helps limit unnecessary removal and avoids covering materials that remain wet.',
         'steps' => [
             ['Inspect and contain', 'We identify the likely source, check safety concerns and map the affected materials.'],
             ['Extract and stabilize', 'Standing water is removed and vulnerable contents are moved or protected.'],

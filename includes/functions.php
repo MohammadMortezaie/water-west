@@ -18,6 +18,35 @@ function service_url(string $slug): string
     return '/' . $slug;
 }
 
+function asset_url(string $path): string
+{
+    return '/' . ltrim($path, '/') . '?v=' . ASSET_VERSION;
+}
+
+function image_dimensions(string $image): array
+{
+    $dimensions = [
+        'emergency-water-damage-living-room.webp' => [1920, 1080],
+        'basement-flood-cleanup.webp' => [1920, 1080],
+        'ceiling-water-damage.webp' => [1920, 1080],
+        'living-room-structural-drying.webp' => [1600, 1200],
+        'bathroom-structural-drying.webp' => [1200, 1510],
+        'restoration-drying-equipment.webp' => [1373, 1146],
+        'water-damage-wall-restoration.webp' => [1200, 1600],
+        'iicrc-certified.webp' => [300, 100],
+    ];
+
+    return $dimensions[$image] ?? [1600, 1000];
+}
+
+function responsive_image_srcset(string $image): string
+{
+    [$width] = image_dimensions($image);
+    $stem = pathinfo($image, PATHINFO_FILENAME);
+
+    return '/assets/images/' . $stem . '-800.webp 800w, /assets/images/' . $image . ' ' . $width . 'w';
+}
+
 function icon(string $name, string $class = ''): string
 {
     $paths = [
@@ -41,48 +70,69 @@ function icon(string $name, string $class = ''): string
 function render_header(array $meta, string $currentPath, array $extraSchema = []): void
 {
     global $services;
-    $metaTitle = $meta['title'] . ' | (604) 800-3900';
-    $canonical = path_url($currentPath);
+    $metaTitle = $meta['title'] . TITLE_SUFFIX;
+    $canonical = array_key_exists('canonical', $meta) ? $meta['canonical'] : path_url($currentPath);
     $socialImage = path_url($meta['image'] ?? 'assets/images/emergency-water-damage-living-room.webp');
+    $socialImageAlt = $meta['image_alt'] ?? 'Professional water damage restoration service in West Vancouver';
+    [$socialImageWidth, $socialImageHeight] = image_dimensions(basename((string) parse_url($socialImage, PHP_URL_PATH)));
     $robots = $meta['robots'] ?? 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1';
     $pageType = $meta['schema_type'] ?? 'WebPage';
+    $businessId = SITE_URL . '/#localbusiness';
     $schemas = [
         [
             '@context' => 'https://schema.org',
-            '@type' => 'Organization',
-            '@id' => SITE_URL . '/#organization',
+            '@type' => 'HomeAndConstructionBusiness',
+            '@id' => $businessId,
             'name' => SITE_NAME,
+            'alternateName' => 'VR Restoration',
             'url' => SITE_URL . '/',
             'telephone' => PHONE_LINK,
+            'email' => BUSINESS_EMAIL,
             'description' => '24/7 water damage restoration, water extraction, flood cleanup and structural drying for West Vancouver homes and businesses.',
             'image' => path_url('assets/images/emergency-water-damage-living-room.webp'),
-            'logo' => [
-                '@type' => 'ImageObject',
-                'url' => path_url('assets/images/favicon.svg'),
+            'sameAs' => [
+                MAIN_SITE_URL,
+                'https://www.linkedin.com/company/vr-plus-construction-and-restoration',
+            ],
+            'address' => [
+                '@type' => 'PostalAddress',
+                'streetAddress' => BUSINESS_STREET,
+                'addressLocality' => BUSINESS_LOCALITY,
+                'addressRegion' => BUSINESS_REGION,
+                'addressCountry' => 'CA',
             ],
             'areaServed' => [
                 '@type' => 'City',
                 'name' => 'West Vancouver',
                 'sameAs' => 'https://en.wikipedia.org/wiki/West_Vancouver',
             ],
-            'contactPoint' => [[
+            'openingHoursSpecification' => [[
+                '@type' => 'OpeningHoursSpecification',
+                'dayOfWeek' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                'opens' => '00:00',
+                'closes' => '23:59',
+            ]],
+            'contactPoint' => [
                 '@type' => 'ContactPoint',
                 'telephone' => PHONE_LINK,
                 'contactType' => 'emergency service',
                 'areaServed' => 'CA-BC',
                 'availableLanguage' => ['English'],
-            ]],
+            ],
         ],
         [
             '@context' => 'https://schema.org',
             '@type' => 'WebSite',
             '@id' => SITE_URL . '/#website',
             'url' => SITE_URL . '/',
-            'name' => SITE_NAME,
+            'name' => 'VR Plus Restoration — West Vancouver Water Damage',
+            'alternateName' => 'Water Damage West Vancouver',
             'inLanguage' => 'en-CA',
-            'publisher' => ['@id' => SITE_URL . '/#organization'],
+            'publisher' => ['@id' => $businessId],
         ],
-        [
+    ];
+    if ($pageType !== null && $canonical !== null) {
+        $schemas[] = [
             '@context' => 'https://schema.org',
             '@type' => $pageType,
             '@id' => $canonical . '#webpage',
@@ -91,14 +141,16 @@ function render_header(array $meta, string $currentPath, array $extraSchema = []
             'description' => $meta['description'],
             'inLanguage' => 'en-CA',
             'isPartOf' => ['@id' => SITE_URL . '/#website'],
-            'about' => ['@id' => SITE_URL . '/#organization'],
+            'about' => ['@id' => $businessId],
             'primaryImageOfPage' => [
                 '@type' => 'ImageObject',
                 'url' => $socialImage,
+                'width' => $socialImageWidth,
+                'height' => $socialImageHeight,
             ],
-            'dateModified' => '2026-10-01',
-        ],
-    ];
+            'dateModified' => CONTENT_LAST_MODIFIED,
+        ];
+    }
     foreach ($extraSchema as $schema) {
         $schemas[] = $schema;
     }
@@ -112,25 +164,27 @@ function render_header(array $meta, string $currentPath, array $extraSchema = []
     <title><?= e($metaTitle) ?></title>
     <meta name="description" content="<?= e($meta['description']) ?>">
     <meta name="robots" content="<?= e($robots) ?>">
-    <link rel="canonical" href="<?= e($canonical) ?>">
+    <?php if ($canonical !== null): ?><link rel="canonical" href="<?= e($canonical) ?>"><?php endif; ?>
     <meta property="og:locale" content="en_CA">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="<?= e(SITE_NAME) ?>">
     <meta property="og:title" content="<?= e($metaTitle) ?>">
     <meta property="og:description" content="<?= e($meta['description']) ?>">
-    <meta property="og:url" content="<?= e($canonical) ?>">
+    <?php if ($canonical !== null): ?><meta property="og:url" content="<?= e($canonical) ?>"><?php endif; ?>
     <meta property="og:image" content="<?= e($socialImage) ?>">
-    <meta property="og:image:alt" content="Professional water damage restoration work in West Vancouver">
+    <meta property="og:image:secure_url" content="<?= e($socialImage) ?>">
+    <meta property="og:image:alt" content="<?= e($socialImageAlt) ?>">
     <meta property="og:image:type" content="image/webp">
+    <meta property="og:image:width" content="<?= $socialImageWidth ?>">
+    <meta property="og:image:height" content="<?= $socialImageHeight ?>">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="<?= e($metaTitle) ?>">
     <meta name="twitter:description" content="<?= e($meta['description']) ?>">
     <meta name="twitter:image" content="<?= e($socialImage) ?>">
-    <meta name="twitter:image:alt" content="Professional water damage restoration work in West Vancouver">
+    <meta name="twitter:image:alt" content="<?= e($socialImageAlt) ?>">
     <meta name="theme-color" content="#071f2e">
-    <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
-    <link rel="preload" href="/assets/css/site.css" as="style">
-    <link rel="stylesheet" href="/assets/css/site.css">
+    <link rel="icon" href="<?= e(asset_url('assets/images/favicon.svg')) ?>" type="image/svg+xml">
+    <link rel="stylesheet" href="<?= e(asset_url('assets/css/site.css')) ?>">
     <?php foreach ($schemas as $schema): ?>
     <script type="application/ld+json"><?= json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) ?></script>
     <?php endforeach; ?>
@@ -145,9 +199,9 @@ function render_header(array $meta, string $currentPath, array $extraSchema = []
 </div>
 <header class="site-header" data-header>
     <div class="container nav-wrap">
-        <a class="brand" href="/" aria-label="<?= e(SITE_NAME) ?> home">
+        <a class="brand" href="/">
             <span class="brand__mark"><?= icon('drop') ?></span>
-            <span><strong>West Vancouver</strong><small>Water Damage</small></span>
+            <span><strong>VR Plus Restoration</strong><small>Water damage · West Vancouver</small></span>
         </a>
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-nav-toggle>
             <span class="sr-only">Open menu</span><?= icon('menu', 'menu-open') ?><?= icon('x', 'menu-close') ?>
@@ -178,10 +232,11 @@ function render_quick_form(string $prefix, bool $compact = false): void
 {
     ?>
     <form class="quick-form<?= $compact ? ' quick-form--compact' : '' ?>" action="/contact-submit.php" method="post">
-        <div class="field"><label for="<?= e($prefix) ?>-name">Full Name <span aria-hidden="true">*</span></label><input id="<?= e($prefix) ?>-name" name="name" type="text" autocomplete="name" required></div>
-        <div class="field"><label for="<?= e($prefix) ?>-phone">Phone Number <span aria-hidden="true">*</span></label><input id="<?= e($prefix) ?>-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required></div>
-        <div class="field"><label for="<?= e($prefix) ?>-email">Email <span aria-hidden="true">*</span></label><input id="<?= e($prefix) ?>-email" name="email" type="email" autocomplete="email" required></div>
-        <div class="field"><label for="<?= e($prefix) ?>-message">Message <span aria-hidden="true">*</span></label><textarea id="<?= e($prefix) ?>-message" name="message" rows="4" required></textarea></div>
+        <div class="field"><label for="<?= e($prefix) ?>-name">Full Name <span aria-hidden="true">*</span></label><input id="<?= e($prefix) ?>-name" name="name" type="text" autocomplete="name" maxlength="100" required></div>
+        <div class="field"><label for="<?= e($prefix) ?>-phone">Phone Number <span aria-hidden="true">*</span></label><input id="<?= e($prefix) ?>-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="40" required></div>
+        <div class="field"><label for="<?= e($prefix) ?>-email">Email <span aria-hidden="true">*</span></label><input id="<?= e($prefix) ?>-email" name="email" type="email" autocomplete="email" maxlength="150" required></div>
+        <div class="field"><label for="<?= e($prefix) ?>-message">Message <span aria-hidden="true">*</span></label><textarea id="<?= e($prefix) ?>-message" name="message" rows="4" maxlength="2000" required></textarea></div>
+        <div class="hp-field" aria-hidden="true"><label for="<?= e($prefix) ?>-website">Website</label><input id="<?= e($prefix) ?>-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
         <button class="button button--primary" type="submit">Get My Free Inspection <?= icon('arrow') ?></button>
     </form>
     <?php
@@ -195,7 +250,7 @@ function render_hero_form(string $prefix): void
         <h2 id="<?= e($prefix) ?>-form-title">Get your free inspection</h2>
         <p>Send your contact details and we’ll follow up about your West Vancouver property.</p>
         <?php render_quick_form($prefix); ?>
-        <small>Free inspection · No obligation</small>
+        <small>Free inspection · No obligation · <a href="/privacy">Privacy</a></small>
     </aside>
     <?php
 }
@@ -209,19 +264,10 @@ function render_canadian_badge(string $context = 'Serving West Vancouver'): void
 
 function render_page_photo(string $image, string $alt, string $caption, string $class = ''): void
 {
-    $dimensions = [
-        'emergency-water-damage-living-room.webp' => [1920, 1080],
-        'basement-flood-cleanup.webp' => [1920, 1080],
-        'ceiling-water-damage.webp' => [1920, 1080],
-        'living-room-structural-drying.webp' => [1600, 1200],
-        'bathroom-structural-drying.webp' => [1200, 1510],
-        'restoration-drying-equipment.webp' => [1373, 1146],
-        'water-damage-wall-restoration.webp' => [1200, 1600],
-    ];
-    [$width, $height] = $dimensions[$image] ?? [1600, 1000];
+    [$width, $height] = image_dimensions($image);
     ?>
     <figure class="page-photo<?= $class !== '' ? ' ' . e($class) : '' ?>">
-        <img src="/assets/images/<?= e($image) ?>" width="<?= $width ?>" height="<?= $height ?>" loading="lazy" alt="<?= e($alt) ?>">
+        <img src="/assets/images/<?= e($image) ?>" srcset="<?= e(responsive_image_srcset($image)) ?>" sizes="(max-width: 760px) calc(100vw - 2rem), (max-width: 1200px) 50vw, 620px" width="<?= $width ?>" height="<?= $height ?>" loading="lazy" decoding="async" alt="<?= e($alt) ?>">
         <figcaption><?= e($caption) ?></figcaption>
     </figure>
     <?php
@@ -250,10 +296,11 @@ function render_footer(): void
         <div class="footer-brand">
             <a class="brand brand--footer" href="/">
                 <span class="brand__mark"><?= icon('drop') ?></span>
-                <span><strong>West Vancouver</strong><small>Water Damage</small></span>
+                <span><strong>VR Plus Restoration</strong><small>Water damage · West Vancouver</small></span>
             </a>
-            <p>Proudly Canadian and locally focused on West Vancouver. Emergency water removal, professional drying and practical restoration support for homes and businesses.</p>
+            <p>This focused West Vancouver service website is operated by <a href="<?= e(MAIN_SITE_URL) ?>">VR Plus Restoration</a>. We provide emergency water removal, professional drying and practical restoration support for homes and businesses.</p>
             <a class="footer-phone" href="tel:<?= e(PHONE_LINK) ?>"><?= icon('phone') ?> <?= e(PHONE_DISPLAY) ?></a>
+            <address class="footer-address"><?= e(BUSINESS_STREET) ?>, <?= e(BUSINESS_LOCALITY) ?>, <?= e(BUSINESS_REGION) ?><br><a href="mailto:<?= e(BUSINESS_EMAIL) ?>"><?= e(BUSINESS_EMAIL) ?></a></address>
         </div>
         <div>
             <h2 class="footer-heading">Services</h2>
@@ -278,12 +325,12 @@ function render_footer(): void
         </div>
     </div>
     <div class="container footer-bottom">
-        <p>&copy; <?= date('Y') ?> <?= e(SITE_NAME) ?>. All rights reserved by <a href="https://vrrestoration.ca/en">VR Restoration</a>. Design and develop by <a href="https://webpulse.ca/">webpulse.ca</a></p>
+        <p>&copy; <?= date('Y') ?> <a href="<?= e(MAIN_SITE_URL) ?>"><?= e(SITE_NAME) ?></a>. Design and development by <a href="https://webpulse.ca/">webpulse.ca</a>.</p>
         <div><a href="/privacy">Privacy</a><a href="/sitemap.xml">Sitemap</a><a href="/llms.txt">AI Site Guide</a></div>
     </div>
 </footer>
 <a class="mobile-call" href="tel:<?= e(PHONE_LINK) ?>"><?= icon('phone') ?> Call 24/7: <?= e(PHONE_DISPLAY) ?></a>
-<script src="/assets/js/site.js" defer></script>
+<script src="<?= e(asset_url('assets/js/site.js')) ?>" defer></script>
 </body>
 </html>
 <?php
@@ -301,19 +348,6 @@ function breadcrumb_schema(array $items): array
         ];
     }
     return ['@context' => 'https://schema.org', '@type' => 'BreadcrumbList', 'itemListElement' => $list];
-}
-
-function faq_schema(array $faqs): array
-{
-    return [
-        '@context' => 'https://schema.org',
-        '@type' => 'FAQPage',
-        'mainEntity' => array_map(static fn(array $faq): array => [
-            '@type' => 'Question',
-            'name' => $faq[0],
-            'acceptedAnswer' => ['@type' => 'Answer', 'text' => $faq[1]],
-        ], $faqs),
-    ];
 }
 
 function service_list_schema(array $services): array

@@ -33,13 +33,16 @@ function render_home(): void
     global $services, $homeFaqs, $neighbourhoods;
     $meta = [
         'title' => 'Water Damage Restoration West Vancouver',
-        'description' => '24/7 water damage restoration in West Vancouver. Fast water extraction, structural drying, free inspection and insurance claim support.',
+        'description' => '24/7 water damage restoration in West Vancouver by VR Plus Restoration. Water extraction, structural drying, flood cleanup and claim documentation.',
     ];
-    render_header($meta, '', [faq_schema($homeFaqs)]);
+    render_header($meta, '');
     ?>
     <section class="hero hero--home">
         <div class="hero__media">
-            <img src="/assets/images/emergency-water-damage-living-room.webp" width="1920" height="1080" alt="Homeowner responding to water leaking into a West Vancouver living room" fetchpriority="high">
+            <picture>
+                <source type="image/webp" srcset="/assets/images/emergency-water-damage-living-room-640.webp 640w, /assets/images/emergency-water-damage-living-room-960.webp 960w, /assets/images/emergency-water-damage-living-room-1440.webp 1440w, /assets/images/emergency-water-damage-living-room.webp 1920w" sizes="100vw">
+                <img src="/assets/images/emergency-water-damage-living-room.webp" width="1920" height="1080" alt="Homeowner responding to water leaking into a West Vancouver living room" fetchpriority="high" decoding="async">
+            </picture>
         </div>
         <div class="hero__shade"></div>
         <div class="container hero__content">
@@ -57,7 +60,7 @@ function render_home(): void
                     <li><?= icon('check') ?> 24/7 emergency service</li>
                     <li><?= icon('check') ?> Fast local response</li>
                     <li><?= icon('check') ?> Free inspection</li>
-                    <li><?= icon('check') ?> Insurance claim assistance</li>
+                    <li><?= icon('check') ?> Claim documentation support</li>
                 </ul>
                 </div>
                 <?php render_hero_form('home'); ?>
@@ -65,7 +68,7 @@ function render_home(): void
         </div>
         <div class="hero__proof">
             <div class="container proof-grid">
-                <div class="proof-cert"><img src="/assets/images/iicrc-certified.webp" width="300" height="100" alt="IICRC certification logo"><span><strong>IICRC</strong> Certified</span></div>
+                <div class="proof-cert"><img src="/assets/images/iicrc-certified.webp" srcset="/assets/images/iicrc-certified-128.webp 128w, /assets/images/iicrc-certified.webp 300w" sizes="64px" width="300" height="100" loading="lazy" decoding="async" alt="IICRC Certified Firm mark used by VR Plus Restoration"><span><strong>IICRC</strong> Certified Firm</span></div>
                 <div><?= icon('clock') ?><span><strong>24/7</strong> Emergency calls</span></div>
                 <div><?= icon('meter') ?><span><strong>Measured</strong> Moisture checks</span></div>
                 <div><?= icon('shield') ?><span><strong>Residential</strong> & commercial</span></div>
@@ -82,8 +85,8 @@ function render_home(): void
             </div>
             <div class="prose">
                 <p>Water damage can spread through flooring, wall cavities and rooms below before the full extent is visible. Our first priority is to make the area safer, control further movement and remove accessible water. We then use moisture instruments to trace affected materials and build the drying plan around your property.</p>
-                <p>We help homeowners, strata contacts and local businesses with sudden plumbing leaks, floods, roof leaks, storm water and appliance failures. You receive straightforward updates, practical options and documentation that can support your insurance conversation.</p>
-                <a class="text-link" href="/water-damage-restoration-west-vancouver">Explore our complete restoration service <?= icon('arrow') ?></a>
+                <p>VR Plus Restoration helps homeowners, strata contacts and local businesses with sudden plumbing leaks, floods, roof leaks, storm water and appliance failures. You receive straightforward updates, practical options and documentation that can support your insurance conversation.</p>
+                <a class="text-link" href="/water-damage-restoration-west-vancouver">Explore structural drying and repair <?= icon('arrow') ?></a>
             </div>
         </div>
     </section>
@@ -91,18 +94,18 @@ function render_home(): void
     <section class="section section--mist work-gallery">
         <div class="container split-heading">
             <div>
-                <span class="eyebrow">Our equipment and project work</span>
-                <h2>Real conditions require the right response</h2>
+                <span class="eyebrow">Restoration equipment and damage conditions</span>
+                <h2>Different materials require different drying decisions</h2>
             </div>
-            <p>These photos show the equipment, drying work and damage conditions our restoration team handles.</p>
+            <p>These service images illustrate common equipment, drying setups and damage conditions. Verified VR Plus credentials, team information and current customer reviews are linked below.</p>
         </div>
         <div class="container work-gallery__grid">
-            <figure class="work-gallery__wide"><img src="/assets/images/restoration-drying-equipment.webp" width="1373" height="1146" loading="lazy" alt="Water damage drying equipment ready for emergency jobs"><figcaption>Drying equipment ready for dispatch</figcaption></figure>
-            <figure><img src="/assets/images/living-room-structural-drying.webp" width="1600" height="1200" loading="lazy" alt="Air movers and dehumidifiers drying a living room"><figcaption>Living room structural drying</figcaption></figure>
-            <figure><img src="/assets/images/water-damage-wall-restoration.webp" width="1200" height="1600" loading="lazy" alt="Wall opened for water damage drying and repair"><figcaption>Wall drying and repair preparation</figcaption></figure>
-            <figure><img src="/assets/images/bathroom-structural-drying.webp" width="1200" height="1510" loading="lazy" alt="Professional drying equipment operating in a bathroom"><figcaption>Bathroom drying equipment</figcaption></figure>
-            <figure><img src="/assets/images/basement-flood-cleanup.webp" width="1920" height="1080" loading="lazy" alt="Flood water covering a basement floor and stairs"><figcaption>Basement flood conditions</figcaption></figure>
-            <figure class="work-gallery__wide"><img src="/assets/images/ceiling-water-damage.webp" width="1920" height="1080" loading="lazy" alt="Moisture damage beside a ceiling sprinkler fitting"><figcaption>Ceiling moisture inspection</figcaption></figure>
+            <figure class="work-gallery__wide"><img src="/assets/images/restoration-drying-equipment.webp" srcset="<?= e(responsive_image_srcset('restoration-drying-equipment.webp')) ?>" sizes="(max-width: 760px) calc(100vw - 2rem), (max-width: 1020px) 50vw, 590px" width="1373" height="1146" loading="lazy" decoding="async" alt="Water damage air movers and dehumidification equipment"><figcaption>Equipment used for controlled structural drying</figcaption></figure>
+            <figure><img src="/assets/images/living-room-structural-drying.webp" srcset="<?= e(responsive_image_srcset('living-room-structural-drying.webp')) ?>" sizes="(max-width: 760px) calc(100vw - 2rem), (max-width: 1020px) 50vw, 295px" width="1600" height="1200" loading="lazy" decoding="async" alt="Air movers and dehumidifiers arranged in a living room"><figcaption>Living room structural drying setup</figcaption></figure>
+            <figure><img src="/assets/images/water-damage-wall-restoration.webp" srcset="<?= e(responsive_image_srcset('water-damage-wall-restoration.webp')) ?>" sizes="(max-width: 760px) calc(100vw - 2rem), (max-width: 1020px) 50vw, 295px" width="1200" height="1600" loading="lazy" decoding="async" alt="Wall opened for water damage drying and repair"><figcaption>Wall drying and repair preparation</figcaption></figure>
+            <figure><img src="/assets/images/bathroom-structural-drying.webp" srcset="<?= e(responsive_image_srcset('bathroom-structural-drying.webp')) ?>" sizes="(max-width: 760px) calc(100vw - 2rem), (max-width: 1020px) 50vw, 295px" width="1200" height="1510" loading="lazy" decoding="async" alt="Professional drying equipment operating in a bathroom"><figcaption>Bathroom drying equipment</figcaption></figure>
+            <figure><img src="/assets/images/basement-flood-cleanup.webp" srcset="<?= e(responsive_image_srcset('basement-flood-cleanup.webp')) ?>" sizes="(max-width: 760px) calc(100vw - 2rem), (max-width: 1020px) 50vw, 295px" width="1920" height="1080" loading="lazy" decoding="async" alt="Flood water covering a basement floor and stairs"><figcaption>Basement flood conditions</figcaption></figure>
+            <figure class="work-gallery__wide"><img src="/assets/images/ceiling-water-damage.webp" srcset="<?= e(responsive_image_srcset('ceiling-water-damage.webp')) ?>" sizes="(max-width: 760px) calc(100vw - 2rem), (max-width: 1020px) 50vw, 590px" width="1920" height="1080" loading="lazy" decoding="async" alt="Moisture damage beside a ceiling sprinkler fitting"><figcaption>Ceiling moisture inspection</figcaption></figure>
         </div>
     </section>
 
@@ -187,6 +190,19 @@ function render_home(): void
         </div>
     </section>
 
+    <section class="section section--mist trust-section">
+        <div class="container split-heading">
+            <div><span class="eyebrow">Verify who you are calling</span><h2>West Vancouver service from VR Plus Restoration</h2></div>
+            <p>This site represents the same VR Plus Restoration team, emergency number and West Vancouver service location shown on the company’s official website.</p>
+        </div>
+        <div class="container trust-grid">
+            <article><?= icon('pin') ?><h3>Local service location</h3><p><?= e(BUSINESS_STREET) ?>, <?= e(BUSINESS_LOCALITY) ?>, <?= e(BUSINESS_REGION) ?>.</p></article>
+            <article><?= icon('shield') ?><h3>Published credentials</h3><p>VR Plus identifies its restoration professionals as IICRC certified and publishes its certifications on the <a href="<?= e(MAIN_SITE_URL) ?>/about">official company profile</a>.</p></article>
+            <article><?= icon('document') ?><h3>Named team and roles</h3><p>Leadership, restoration, engineering and coordination roles are listed on the <a href="<?= e(MAIN_SITE_URL) ?>/our-team">VR Plus team page</a>.</p></article>
+            <article><?= icon('check') ?><h3>Current public proof</h3><p>See current customer reviews and recent restoration work on the <a href="<?= e(MAIN_SITE_URL) ?>">official VR Plus Restoration website</a>.</p></article>
+        </div>
+    </section>
+
     <?php render_faqs($homeFaqs, 'Water damage questions from West Vancouver property owners'); ?>
     <?php render_footer();
 }
@@ -207,7 +223,7 @@ function render_services(): void
         'schema_type' => 'CollectionPage',
     ];
     $breadcrumbs = [['Home', ''], ['Services', 'services']];
-    render_header($meta, 'services', [breadcrumb_schema($breadcrumbs), service_list_schema($services), faq_schema($serviceFaqs)]);
+    render_header($meta, 'services', [breadcrumb_schema($breadcrumbs), service_list_schema($services)]);
     render_breadcrumbs($breadcrumbs);
     ?>
     <section class="page-hero page-hero--services">
@@ -230,7 +246,7 @@ function render_services(): void
     <section class="section">
         <div class="container feature-band">
             <div><span class="eyebrow">Not sure where to start?</span><h2>Start with the source, safety and standing water.</h2></div>
-            <p>For an active leak or water spreading through the property, use our <a href="/emergency-water-damage-west-vancouver">emergency water damage service</a>. For an older loss or a broad repair scope, begin with <a href="/water-damage-restoration-west-vancouver">water damage restoration</a>.</p>
+            <p>For an active leak or water spreading through the property, use our <a href="/emergency-water-damage-west-vancouver">emergency water damage service</a>. For an older loss or a broad repair scope, begin with <a href="/water-damage-restoration-west-vancouver">water damage repair and structural drying</a>.</p>
         </div>
     </section>
     <?php render_faqs($serviceFaqs, 'Water damage service questions'); ?>
@@ -244,16 +260,16 @@ function service_enrichment(string $slug): array
             'image' => 'water-damage-wall-restoration.webp',
             'alt' => 'Wall cavity opened for professional water damage drying and restoration',
             'caption' => 'Selective access helps expose trapped moisture while limiting unnecessary removal.',
-            'title' => 'Restoration decisions should follow the water, not just the stain',
+            'title' => 'Drying verification connects emergency mitigation to lasting repairs',
             'copy' => [
-                'A visible mark is often only the edge of the affected area. Water can wick into drywall, move under flooring and collect inside insulated cavities. We check adjoining rooms and lower levels so the restoration scope reflects the actual moisture pattern.',
-                'In West Vancouver homes, multi-level layouts, finished basements and complex wall assemblies can make that investigation especially important. Drying targets, equipment placement and repair recommendations are documented as the project progresses.',
+                'The homepage explains the urgent first response. This service focuses on the next stage: measuring what remains wet, monitoring how materials respond and defining the repair scope after the loss is stable.',
+                'In West Vancouver homes, multi-level layouts, finished basements and complex wall assemblies can make that transition especially important. Drying targets, equipment placement and repair recommendations are documented before finishes are closed or replaced.',
             ],
-            'heading' => 'What shapes a complete restoration plan',
+            'heading' => 'What shapes the drying and repair scope',
             'points' => [
                 ['Water category and exposure time', 'The source and the time materials stayed wet influence cleaning, removal and safety decisions.'],
                 ['Material response', 'Drywall, insulation, hardwood, carpet and cabinetry absorb and release moisture differently.'],
-                ['Drying verification', 'Recorded moisture readings show whether the assembly is responding before equipment is removed.'],
+                ['Drying verification', 'Recorded moisture readings show whether the assembly has reached its drying target before repair work proceeds.'],
             ],
         ],
         'emergency-water-damage-west-vancouver' => [
@@ -406,7 +422,7 @@ function render_service(string $slug, array $service): void
         'serviceType' => $service['nav'],
         'description' => $service['description'],
         'image' => path_url('assets/images/' . $extra['image']),
-        'provider' => ['@id' => SITE_URL . '/#organization'],
+        'provider' => ['@id' => SITE_URL . '/#localbusiness'],
         'areaServed' => ['@type' => 'City', 'name' => 'West Vancouver'],
         'availableChannel' => [
             '@type' => 'ServiceChannel',
@@ -423,7 +439,7 @@ function render_service(string $slug, array $service): void
         ],
         'url' => path_url($slug),
     ];
-    render_header(['title' => $service['title'], 'description' => $service['description'], 'image' => 'assets/images/' . $extra['image']], $slug, [breadcrumb_schema($breadcrumbs), $schema, faq_schema($service['faqs'])]);
+    render_header(['title' => $service['title'], 'description' => $service['description'], 'image' => 'assets/images/' . $extra['image']], $slug, [breadcrumb_schema($breadcrumbs), $schema]);
     render_breadcrumbs($breadcrumbs);
     ?>
     <section class="page-hero page-hero--service">
@@ -434,7 +450,7 @@ function render_service(string $slug, array $service): void
                 <h1><?= e($service['h1']) ?></h1>
                 <p class="page-hero__lead"><?= e($service['lead']) ?></p>
                 <div class="hero__actions">
-                    <a class="button button--primary" href="tel:<?= e(PHONE_LINK) ?>"><?= icon('phone') ?> Request Emergency Service</a>
+                    <a class="button button--primary" href="tel:<?= e(PHONE_LINK) ?>"><?= icon('phone') ?> <?= $slug === 'water-damage-restoration-west-vancouver' ? 'Request Repair Assessment' : 'Request Emergency Service' ?></a>
                     <a class="button button--outline-light" href="#free-inspection">Free Inspection</a>
                 </div>
             </div>
@@ -521,7 +537,7 @@ function render_areas(): void
         'schema_type' => 'CollectionPage',
     ];
     $breadcrumbs = [['Home', ''], ['Areas We Serve', 'areas-we-serve']];
-    render_header($meta, 'areas-we-serve', [breadcrumb_schema($breadcrumbs), faq_schema($areaFaqs)]);
+    render_header($meta, 'areas-we-serve', [breadcrumb_schema($breadcrumbs)]);
     render_breadcrumbs($breadcrumbs);
     ?>
     <section class="page-hero page-hero--areas">
@@ -562,37 +578,43 @@ function render_areas(): void
 function render_about(): void
 {
     $aboutFaqs = [
-        ['Is this a Canadian water damage service?', 'Yes. We are proudly Canadian and locally focused on water damage response for West Vancouver homes, strata properties and businesses.'],
+        ['Who operates this West Vancouver water damage website?', 'VR Plus Restoration operates this focused West Vancouver service website. It uses the same emergency number and company information published on vrrestoration.ca.'],
         ['How do you decide what materials need removal?', 'The water source, contamination, exposure time, material condition and moisture readings guide the decision. We explain what can potentially be dried and why removal may be needed.'],
         ['How do you confirm that an area is dry?', 'We compare moisture readings in affected materials with appropriate dry reference areas and monitor progress before drying equipment is removed.'],
         ['Do you decide whether insurance will cover the work?', 'No. Coverage decisions belong to the insurer. We can provide photographs, moisture readings and mitigation records that support a clear claim conversation.'],
     ];
     $meta = [
-        'title' => 'About West Vancouver Water Damage',
-        'description' => 'Learn about our practical approach guided by measurements for water damage cleanup, drying, communication and insurance documentation in West Vancouver.',
+        'title' => 'About VR Plus Restoration West Vancouver',
+        'description' => 'Verify the VR Plus Restoration team, West Vancouver location, IICRC credentials and measured approach to water damage cleanup and drying.',
         'image' => 'assets/images/living-room-structural-drying.webp',
         'schema_type' => 'AboutPage',
     ];
     $breadcrumbs = [['Home', ''], ['About', 'about']];
-    render_header($meta, 'about', [breadcrumb_schema($breadcrumbs), faq_schema($aboutFaqs)]);
+    render_header($meta, 'about', [breadcrumb_schema($breadcrumbs)]);
     render_breadcrumbs($breadcrumbs);
     ?>
     <section class="page-hero page-hero--about">
         <div class="container page-hero__grid">
-            <div><?php render_canadian_badge('Canadian owned and locally focused'); ?><span class="eyebrow eyebrow--aqua">Local, clear and accountable</span><h1>A Practical Approach to Water Damage in West Vancouver</h1><p class="page-hero__lead">We help property owners move from an uncertain water loss to a documented plan for extraction, drying, cleanup and repairs.</p></div>
+            <div><?php render_canadian_badge('VR Plus Restoration in West Vancouver'); ?><span class="eyebrow eyebrow--aqua">One verified business identity</span><h1>About VR Plus Restoration in West Vancouver</h1><p class="page-hero__lead">This focused service website connects West Vancouver property owners with the same VR Plus Restoration team, phone number and company information published on vrrestoration.ca.</p></div>
             <?php render_hero_form('about'); ?>
         </div>
     </section>
     <section class="section section--compact">
         <div class="container media-feature">
             <?php render_page_photo('living-room-structural-drying.webp', 'Professional structural drying equipment in an occupied residential room', 'A measured drying setup designed around the affected materials and usable space.'); ?>
-            <div class="prose"><span class="eyebrow">Proudly Canadian</span><h2>Local service backed by a disciplined restoration process</h2><p>Our focus is West Vancouver: its homeowners, strata communities, commercial spaces and distinctive mix of coastal and hillside properties. Being proudly Canadian means showing up with practical communication, respect for the property and clear accountability for the work performed.</p><p>We combine that local focus with moisture measurement, documented drying goals and a careful handoff to repairs. The result is a process property owners can understand even when the loss itself is stressful.</p></div>
+            <div class="prose"><span class="eyebrow">Proudly Canadian</span><h2>Local service backed by a disciplined restoration process</h2><p>VR Plus Restoration serves West Vancouver homeowners, strata communities and commercial spaces from its published location at <?= e(BUSINESS_STREET) ?>. The official company website identifies its restoration professionals as IICRC certified and lists the team responsible for restoration, logistics, engineering and project coordination.</p><p>We combine that accountable business identity with moisture measurement, documented drying goals and a careful handoff to repairs. The result is a process property owners can understand even when the loss itself is stressful.</p></div>
         </div>
     </section>
     <section class="section">
         <div class="container intro-grid">
             <div><span class="eyebrow">Our standard</span><h2>Explain the problem before recommending the work</h2></div>
             <div class="prose"><p>Water damage is disruptive, and it becomes more difficult when the scope is unclear. Our work begins with the source, the affected materials and measurable moisture conditions. We explain what we found, what needs immediate attention and which decisions can wait.</p><p>That measured approach helps protect materials that can be saved and supports removal when safety, contamination or material condition makes it necessary. Throughout the project, we keep the response connected to the actual property and its needs.</p></div>
+        </div>
+    </section>
+    <section class="section section--mist">
+        <div class="container content-grid">
+            <div class="prose prose--large"><span class="eyebrow">Company information</span><h2>Details you can verify before inviting a crew into your property</h2><p><strong>Business:</strong> VR Plus Restoration<br><strong>West Vancouver service location:</strong> <?= e(BUSINESS_STREET) ?>, <?= e(BUSINESS_LOCALITY) ?>, <?= e(BUSINESS_REGION) ?><br><strong>Emergency line:</strong> <a href="tel:<?= e(PHONE_LINK) ?>"><?= e(PHONE_DISPLAY) ?></a><br><strong>Email:</strong> <a href="mailto:<?= e(BUSINESS_EMAIL) ?>"><?= e(BUSINESS_EMAIL) ?></a></p><p>The official VR Plus website publishes current company credentials, customer reviews and recent restoration work. This site does not create a separate restoration company or claim a separate set of qualifications.</p></div>
+            <aside class="check-card"><h2>Verify VR Plus</h2><ul><li><?= icon('check') ?> <a href="<?= e(MAIN_SITE_URL) ?>/about">Company profile and certifications</a></li><li><?= icon('check') ?> <a href="<?= e(MAIN_SITE_URL) ?>/our-team">Named team members and roles</a></li><li><?= icon('check') ?> <a href="<?= e(MAIN_SITE_URL) ?>">Current reviews and company projects</a></li><li><?= icon('check') ?> <a href="https://www.linkedin.com/company/vr-plus-construction-and-restoration">Public company profile</a></li></ul></aside>
         </div>
     </section>
     <section class="section section--navy values-section">
@@ -616,24 +638,24 @@ function render_about(): void
 function render_contact(): void
 {
     $contactFaqs = [
-        ['What number should I call for emergency water damage?', 'Call (604)800-3900. The emergency line is answered 24 hours a day for water damage calls in West Vancouver.'],
+        ['What number should I call for emergency water damage?', 'Call (604) 800-3900. The emergency line is answered 24 hours a day for water damage calls in West Vancouver.'],
         ['What information should I provide when I call?', 'Share the property address, likely water source, when the loss started, affected rooms or levels, and whether sewage, electrical hazards or a sagging ceiling may be involved.'],
         ['Can I request a free inspection online?', 'Yes. Submit the form with your name, phone number, email and a short description of the problem. If water is actively spreading, call instead of waiting for a form response.'],
         ['What should I do before help arrives?', 'Keep away from electrical hazards, contaminated water and sagging ceilings. If it is safe, stop the water source and move only light, easy-to-handle belongings away from the wet area.'],
     ];
     $meta = [
-        'title' => 'Contact West Vancouver Water Damage',
-        'description' => 'Request 24/7 water damage help or a free inspection in West Vancouver. Call (604)800-3900 or send your contact details.',
+        'title' => 'Contact VR Plus Restoration West Vancouver',
+        'description' => 'Request 24/7 water damage help or a free inspection from VR Plus Restoration in West Vancouver. Call (604) 800-3900 or send your details.',
         'image' => 'assets/images/ceiling-water-damage.webp',
         'schema_type' => 'ContactPage',
     ];
     $breadcrumbs = [['Home', ''], ['Contact', 'contact']];
-    render_header($meta, 'contact', [breadcrumb_schema($breadcrumbs), faq_schema($contactFaqs)]);
+    render_header($meta, 'contact', [breadcrumb_schema($breadcrumbs)]);
     render_breadcrumbs($breadcrumbs);
     ?>
     <section class="page-hero page-hero--contact">
         <div class="container page-hero__grid">
-            <div><?php render_canadian_badge(); ?><span class="eyebrow eyebrow--aqua">Talk to a restoration team</span><h1>Request Water Damage Help in West Vancouver</h1><p class="page-hero__lead">For active flooding or an emergency outside regular hours, call now. Otherwise, send your contact details and we will arrange your free inspection.</p></div>
+            <div><?php render_canadian_badge('VR Plus Restoration in West Vancouver'); ?><span class="eyebrow eyebrow--aqua">Talk to the restoration team</span><h1>Contact VR Plus Restoration in West Vancouver</h1><p class="page-hero__lead">For active flooding or an emergency outside regular hours, call now. Otherwise, send your contact details and we will arrange your free inspection.</p></div>
             <div>
                 <?php if (isset($_GET['sent'])): ?>
                     <div class="form-status form-status--success" role="status"><strong>Thank you.</strong> Your request has been sent. If water is actively spreading, please call us now.</div>
@@ -655,6 +677,7 @@ function render_contact(): void
             <span class="eyebrow">Emergency line</span>
             <a class="contact-phone" href="tel:<?= e(PHONE_LINK) ?>"><?= e(PHONE_DISPLAY) ?></a>
             <p>Answered 24 hours a day for water damage emergencies in West Vancouver.</p>
+            <p><strong><?= e(SITE_NAME) ?></strong><br><?= e(BUSINESS_STREET) ?>, <?= e(BUSINESS_LOCALITY) ?>, <?= e(BUSINESS_REGION) ?><br><a href="mailto:<?= e(BUSINESS_EMAIL) ?>"><?= e(BUSINESS_EMAIL) ?></a></p>
             <div class="contact-note"><h2>Before you call</h2><ul><li><?= icon('check') ?> Keep away from electrical hazards</li><li><?= icon('check') ?> Stop the water source only if safe</li><li><?= icon('check') ?> Note which rooms and levels are affected</li><li><?= icon('check') ?> Tell us if sewage or outdoor water is involved</li></ul></div>
         </div>
     </section>
@@ -671,18 +694,18 @@ function render_privacy(): void
     ];
     $meta = ['title' => 'Privacy Policy | West Vancouver', 'description' => 'Privacy information for visitors and service request forms on waterdamagewestvancouver.ca.', 'image' => 'assets/images/restoration-drying-equipment.webp'];
     $breadcrumbs = [['Home', ''], ['Privacy', 'privacy']];
-    render_header($meta, 'privacy', [breadcrumb_schema($breadcrumbs), faq_schema($privacyFaqs)]);
+    render_header($meta, 'privacy', [breadcrumb_schema($breadcrumbs)]);
     render_breadcrumbs($breadcrumbs);
     ?>
     <section class="simple-hero"><div class="container page-hero__grid"><div><?php render_canadian_badge('Canadian privacy commitment'); ?><span class="eyebrow eyebrow--aqua">Your information</span><h1>Privacy Policy</h1><p class="page-hero__lead">How we handle the contact details submitted through our free inspection forms.</p></div><?php render_hero_form('privacy'); ?></div></section>
-    <section class="section"><div class="container legal-layout"><div class="prose legal-copy"><p>When you submit our contact form, we use the full name, phone number, email address and message you provide to respond to your water damage service request.</p><h2>How information is used</h2><p>Information is used to respond to your request, arrange your free inspection and maintain related business records. We do not sell personal information.</p><h2>Website data</h2><p>Our web server may record standard technical information such as an IP address, browser type, requested pages and access time for security and performance purposes.</p><h2>Your choices</h2><p>You may request access to or correction of the personal information you submitted by calling <a href="tel:<?= e(PHONE_LINK) ?>"><?= e(PHONE_DISPLAY) ?></a>.</p><p><small>Last updated: October 1, 2026.</small></p></div><?php render_page_photo('restoration-drying-equipment.webp', 'Professional water damage restoration equipment representing our service website', 'Contact details are used to respond to your service request.'); ?></div></section>
+    <section class="section"><div class="container legal-layout"><div class="prose legal-copy"><p>When you submit our contact form, VR Plus Restoration uses the full name, phone number, email address and message you provide to respond to your water damage service request.</p><h2>How information is used</h2><p>Information is used to respond to your request, arrange your free inspection and maintain related business records. We do not sell personal information.</p><h2>Website data</h2><p>Our web server may record standard technical information such as an IP address, browser type, requested pages and access time for security and performance purposes.</p><h2>Your choices</h2><p>You may request access to or correction of the personal information you submitted by calling <a href="tel:<?= e(PHONE_LINK) ?>"><?= e(PHONE_DISPLAY) ?></a> or emailing <a href="mailto:<?= e(BUSINESS_EMAIL) ?>"><?= e(BUSINESS_EMAIL) ?></a>.</p><p><small>Last updated: November 24, 2026.</small></p></div><?php render_page_photo('restoration-drying-equipment.webp', 'Professional water damage restoration equipment representing our service website', 'Contact details are used to respond to your service request.'); ?></div></section>
     <?php render_faqs($privacyFaqs, 'Privacy questions'); ?>
     <?php render_footer();
 }
 
 function render_not_found(): void
 {
-    $meta = ['title' => 'Page Not Found | West Vancouver', 'description' => 'The page you requested could not be found.', 'robots' => 'noindex,follow'];
+    $meta = ['title' => 'Page Not Found | West Vancouver', 'description' => 'The page you requested could not be found.', 'robots' => 'noindex,follow', 'canonical' => null, 'schema_type' => null];
     render_header($meta, '404');
     ?>
     <section class="not-found"><div class="container"><?php render_canadian_badge('West Vancouver water damage help'); ?><span class="eyebrow">404 error</span><h1>This page has moved or does not exist.</h1><p>Return home or call if you need urgent water damage help in West Vancouver.</p><?php render_page_photo('emergency-water-damage-living-room.webp', 'Emergency water damage in a living room', 'Need help now? Our emergency line is available 24 hours.'); ?><div class="hero__actions"><a class="button button--dark" href="/">Return home</a><a class="button button--outline-dark" href="tel:<?= e(PHONE_LINK) ?>">Call <?= e(PHONE_DISPLAY) ?></a></div></div></section>

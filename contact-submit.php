@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+header('X-Robots-Tag: noindex, nofollow');
+
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
     header('Location: /contact', true, 303);
     exit;
@@ -17,6 +19,12 @@ $name = clean_field('name', 100);
 $phone = clean_field('phone', 40);
 $email = clean_field('email', 150);
 $message = clean_field('message', 2000);
+$website = clean_field('website', 200);
+
+if ($website !== '') {
+    header('Location: /contact?sent=1', true, 303);
+    exit;
+}
 
 $emailValid = (bool) filter_var($email, FILTER_VALIDATE_EMAIL);
 $phoneValid = (bool) preg_match('/^[0-9+().\-\s]{7,40}$/', $phone);
